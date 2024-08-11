@@ -1,30 +1,18 @@
 <app-header />
 <main>
   <ul>
-    <li>
-      <app-user [user]="users[0]"
-      (username)="onUserSelected($event)"/>
-    </li>
-    <li>
-      <app-user [user]="users[1]"
-      (username)="onUserSelected($event)"/>
-    </li>
-    <li>
-      <app-user [user]="users[2]"
-      (username)="onUserSelected($event)"/>
-    </li>
-    <li>
-      <app-user [user]="users[3]"
-      (username)="onUserSelected($event)"/>
-    </li>
-    <li>
-      <app-user [user]="users[4]"
-      (username)="onUserSelected($event)"/>
-    </li>
-    <li>
-      <app-user [user]="users[5]"
-      (username)="onUserSelected($event)"/>
-    </li>
+    <!-- @for (usr of users; track $index) { -->
+      <li *ngFor="let usr of users">
+        <app-user [user]="usr"
+        (username)="onUserSelected($event)"/>
+      </li>
+    <!-- } -->
   </ul>
-  <app-tasks [username]="selectedUser" />
+  <!-- @if (selectedUser) { -->
+    <app-tasks *ngIf="selectedUser; else alternat" [username]="selectedUser" />
+  <!-- } @else { -->
+    <ng-template #alternat>
+      <p id="fallback">Select a user to see tasks!</p>
+    </ng-template>
+  <!-- } -->
 </main>
