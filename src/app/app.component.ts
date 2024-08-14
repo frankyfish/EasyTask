@@ -5,6 +5,8 @@ import { UserComponent } from "./user/user.component";
 import { DUMMY_USERS } from './dummy-users';
 import { TasksComponent } from "./tasks/tasks.component";
 import { NgFor, NgIf } from '@angular/common';
+import { TaskComponent } from './task/task.component';
+import { User } from './user/user.model';
 
 @Component({
   selector: 'app-root',
@@ -17,11 +19,11 @@ export class AppComponent {
   title = 'first-app';
   users = DUMMY_USERS
 
-  selectedUser!:string
+  selectedUser?:User
   
-  onUserSelected(username: string) {
-    console.log('user selected:' + username)
-    this.selectedUser = username
+  onUserSelected(userId: string) {
+    console.log('userId selected:' + userId)
+    this.selectedUser = DUMMY_USERS.find(dummyUser => dummyUser.id === userId)
   }
 }
 

@@ -1,3 +1,18 @@
 <div>
-    <h1>{{ username }}</h1>
+    <header>
+        <h2>{{ username }}'s tasks:</h2>
+    </header>
+    <menu>
+        <button (click)="onAddTask()">Add Task</button>
+        @if (isNewTaskCreation) {
+            <app-create (taskCreationCanceler)="onCancelCreateTask()"/>
+        }
+    </menu>
+    <ul>
+        @for (task of tasksByUser; track task.id) {
+            <li>
+                <app-task [taskContent]="task" (completed)="removeCompletedTask($event)"/>
+            </li>
+        }
+    </ul>
 </div>

@@ -3,13 +3,13 @@
   <ul>
     <!-- @for (usr of users; track $index) { -->
       <li *ngFor="let usr of users">
-        <app-user [user]="usr"
-        (username)="onUserSelected($event)"/>
+        <app-user [user]="usr" [selected]="usr.id === selectedUser?.id"
+        (userId)="onUserSelected($event)"/>
       </li>
     <!-- } -->
   </ul>
   <!-- @if (selectedUser) { -->
-    <app-tasks *ngIf="selectedUser; else alternat" [username]="selectedUser" />
+    <app-tasks *ngIf="selectedUser; else alternat" [userId]="selectedUser.id" [username]="selectedUser.name"/>
   <!-- } @else { -->
     <ng-template #alternat>
       <p id="fallback">Select a user to see tasks!</p>
