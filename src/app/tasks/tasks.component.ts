@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TaskComponent, Task } from "../task/task.component";
 import { dummyTasks } from './dummy-tasks';
 import { CreateComponent } from "./create/create.component";
+import { NewTask } from './create/new-task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -17,14 +18,31 @@ export class TasksComponent {
   isNewTaskCreation = false
 
 
+  /**
+   * Handles 'Add Task' button. Basically makes
+   * visible the new task form.
+   */
   onAddTask() {
     console.log('task creation triggered...')
     this.isNewTaskCreation = true
-    // let newTask = {title: 'New task', description: 'todo'}
-    // this.tasks.push(newTask as TaskContent)
   }
 
   onCancelCreateTask() {
+    this.isNewTaskCreation = false
+  }
+  /**
+   * Handles submission of the form with new task
+   * data.
+   */
+  onAddTaskSubmit(newTask: NewTask) {
+    this.tasks.push({
+      id: new Date().getTime().toString(), // just basic ID generation
+      userId: this.userId,
+      title: newTask.title,
+      summary: newTask.summary,
+      dueDate: newTask.date
+    })
+    // closing the task creation dialog
     this.isNewTaskCreation = false
   }
 
