@@ -5,7 +5,8 @@
     <menu>
         <button (click)="onAddTask()">Add Task</button>
         @if (isNewTaskCreation) {
-            <app-create (taskCreationCanceler)="onCancelCreateTask()" (addNewTask)="onAddTaskSubmit($event)"/>
+            <app-create [userId]="userId" 
+            (taskCreationCanceler)="onCancelCreateTask()"/>
         }
     </menu>
     <ul>
