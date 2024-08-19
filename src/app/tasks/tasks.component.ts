@@ -1,13 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { TaskComponent, Task } from "../task/task.component";
-import { CreateComponent } from "./create/create.component";
 import { NewTask } from './create/new-task.model';
 import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
-  standalone: true,
-  imports: [TaskComponent, CreateComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
